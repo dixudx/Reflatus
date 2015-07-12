@@ -1,10 +1,7 @@
-"""
-The Web Service
-"""
-from retflatus.web import Retflatus
+from reflatus.web import Reflatus
 from flask import request, jsonify, render_template
 
-app = Retflatus("Retflatus")
+app = Reflatus("Reflatus")
 
 
 @app.route("/liveflows/<flowname>")
@@ -55,6 +52,6 @@ def convert_flow(flow):
     return newflow
 
 if __name__ == "__main__":
-    from retflatus.utils import setup_logging
+    from reflatus.utils import setup_logging
     setup_logging()
     app.run()

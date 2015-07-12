@@ -1,4 +1,4 @@
-# Retflatus
+# Reflatus
 
 **Re**al-time Jenkins **Fl**ow St**atus** (Standalone Service)
 

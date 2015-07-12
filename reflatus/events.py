@@ -4,7 +4,7 @@ This events.py focuses on listening and handling events
 import zmq
 import threading
 from six.moves import queue as Queue
-from retflatus.utils import StoppedException, setup_logging
+from reflatus.utils import StoppedException
 import logging
 import json
 from abc import ABCMeta, abstractmethod
@@ -438,6 +438,7 @@ class FinalizedEventThread(EventThread):
         self.updateStatus()
 
 if __name__ == "__main__":
+    from reflatus.utils import setup_logging
     setup_logging()
     zmql = ZMQListener('local_zmq', 'tcp://localhost:8888', None, None)
     zmql.start()

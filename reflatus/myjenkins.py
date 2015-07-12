@@ -5,7 +5,7 @@ from jenkinsapi.jenkins import Jenkins
 import logging
 import xmltodict
 from requests.packages import urllib3
-from retflatus.utils import ConfigInfo
+from reflatus.utils import ConfigInfo
 
 
 # disable warnings of urllib3 used by jenkinsapi
@@ -111,7 +111,7 @@ class UpstreamInfo(ConfigInfo):
 
 
 if __name__ == "__main__":
-    from retflatus.utils import setup_logging
+    from reflatus.utils import setup_logging
     setup_logging()
     url = "http://localhost:8080"
     username = "admin"

@@ -3,7 +3,7 @@ load/parse flow yaml file
 """
 import yaml
 import logging
-from retflatus.utils import ConfigInfo
+from reflatus.utils import ConfigInfo
 
 class Serial(list):
     """
@@ -239,7 +239,7 @@ class Loader(object):
 
 
 if __name__ == "__main__":
-    from retflatus.utils import setup_logging
+    from reflatus.utils import setup_logging
     setup_logging()
     filepath = './conf/flows.yaml'
     c = Loader(filepath)

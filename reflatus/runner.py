@@ -1,6 +1,6 @@
-from retflatus.loader import Loader
-from retflatus.myjenkins import JenkinsManager
-from retflatus.events import ZMQListener
+from reflatus.loader import Loader
+from reflatus.myjenkins import JenkinsManager
+from reflatus.events import ZMQListener
 import ConfigParser
 from time import sleep
 import threading
@@ -54,7 +54,7 @@ class Runner(threading.Thread):
 
 
 if __name__ == "__main__":
-    from retflatus.utils import setup_logging
+    from reflatus.utils import setup_logging
     setup_logging()
     test_config = "./conf/config.conf"
     rc = Runner(test_config)
