@@ -4,8 +4,9 @@ Jenkins utils
 from jenkinsapi.jenkins import Jenkins
 import logging
 import xmltodict
-import utils
 from requests.packages import urllib3
+from retflatus.utils import ConfigInfo
+
 
 # disable warnings of urllib3 used by jenkinsapi
 urllib3.disable_warnings()
@@ -97,7 +98,7 @@ class JenkinsManager(object):
         return causes_list if causes_list else None
 
 
-class UpstreamInfo(utils.ConfigInfo):
+class UpstreamInfo(ConfigInfo):
     """
     object to markup upstream job
     """
@@ -110,7 +111,8 @@ class UpstreamInfo(utils.ConfigInfo):
 
 
 if __name__ == "__main__":
-    utils.setup_logging()
+    from retflatus.utils import setup_logging
+    setup_logging()
     url = "http://localhost:8080"
     username = "admin"
     password = "passw0rd"

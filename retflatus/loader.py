@@ -2,9 +2,8 @@
 load/parse flow yaml file
 """
 import yaml
-import utils
 import logging
-
+from retflatus.utils import ConfigInfo
 
 class Serial(list):
     """
@@ -22,12 +21,12 @@ class Parallel(list):
         return 'parallel(%s)' % super(Parallel, self).__str__()
 
 
-class FlowConfig(utils.ConfigInfo):
+class FlowConfig(ConfigInfo):
     def __repr__(self):
         return "<Flow {0.name}>".format(self)
 
 
-class JobConfig(utils.ConfigInfo):
+class JobConfig(ConfigInfo):
     def __repr__(self):
         return "<Job {0.name} 0x{1:x}>".format(self, id(self))
 
@@ -60,7 +59,7 @@ class Loader(object):
         read the native conf file into a well-constructed format
         """
         self.original_data = yaml.load(open(self.path))
-        self.conf = utils.ConfigInfo()
+        self.conf = ConfigInfo()
         self.conf.flows = {}
         flows = self.original_data.get('flows', None)
 
@@ -240,7 +239,7 @@ class Loader(object):
 
 
 if __name__ == "__main__":
-    from utils import setup_logging
+    from retflatus.utils import setup_logging
     setup_logging()
     filepath = './conf/flows.yaml'
     c = Loader(filepath)

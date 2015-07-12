@@ -4,7 +4,7 @@ This events.py focuses on listening and handling events
 import zmq
 import threading
 from six.moves import queue as Queue
-from utils import StoppedException, setup_logging
+from retflatus.utils import StoppedException, setup_logging
 import logging
 import json
 from abc import ABCMeta, abstractmethod
