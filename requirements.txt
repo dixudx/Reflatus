@@ -1,0 +1,6 @@
+pyzmq>=13.1.0,<14.0.0
+six
+xmltodict
+jenkinsapi
+PyYaml
+flask
