@@ -1,0 +1,13 @@
+#!/usr/bin/python
+import sys
+import os
+import logging
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)s %(name)s: '
+                           '(%(threadName)-10s) %(message)s')
+
+sys.path.insert(0, "/var/www/Reflatus")
+os.chdir("/var/www/Reflatus/reflatus")
+
+from reflatus.service import app as application
