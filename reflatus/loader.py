@@ -49,7 +49,7 @@ class Loader(object):
         return self.conf.reshaped_flows, self.conf.flows_map
 
     def read(self):
-        self.log.info("Read conf file %s" % self.path)
+        self.log.info("Read flows' configuration file: %s" % self.path)
         self._read()
         self.reshape()
         self.getMap()
@@ -117,8 +117,9 @@ class Loader(object):
         """
         substitute and remove labeled flows
         """
+        self.log.debug("Reshape flows' structure")
         flows = self.conf.flows
-        reshaped_flows = {}
+        reshaped_flows = dict()
         for (flow_name, flow_info) in flows.iteritems():
             if flow_info.getattr('label'):
                 continue
@@ -173,9 +174,11 @@ class Loader(object):
         """
         Generate flow map used for plotting in the front-end
         """
+        self.log.debug("Generate flow maps")
         flows = self.conf.reshaped_flows
         flow_map = dict()
         for (flow_name, flow_info) in flows.iteritems():
+            self.log.debug("Generate flow map for Flow <%s>" % flow_name)
             flow_map[flow_name] = self.generateMap(flow_info.jobs)
         self.conf.flows_map = flow_map
 
