@@ -4,6 +4,21 @@ from flask import request, jsonify, render_template
 app = Reflatus("Reflatus")
 
 
+@app.route("/")
+def index():
+    """
+    list flows
+    """
+    flows_list = list()
+    url_root = request.url_root
+    for flowname in app.flow_map.keys():
+        flows_list.append([flowname, "".join([url_root,
+                                              "liveflows/",
+                                              flowname])])
+    return render_template('index.html',
+                           flows_list=flows_list)
+
+
 @app.route("/liveflows/<flowname>")
 def livesingleflow(flowname):
     """

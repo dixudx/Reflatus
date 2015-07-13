@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <title>Reflatus</title>
+  </head>
+  <body>
+    <h1>Realtime Jenkins Build Flows List</h1>
+    <ul>
+    {% for flow_name, flow_url in flows_list %}
+      <li><a href="{{ flow_url }}">{{ flow_name }}</a></li>
+    {% endfor %}
+    </ul>
+  </body>
+</html>
