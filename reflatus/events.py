@@ -210,8 +210,6 @@ class EventThread(threading.Thread):
         outdated_msg = "The Event <%s> is out-dated. Ignore it." % self.name
 
         if self.isrootflow:
-            # actually there is no need to check for root flow event
-            # keep it for consistent and future use
             flow = self.flows.get(self.name, None)
             if not flow:
                 # return True for None
@@ -221,7 +219,12 @@ class EventThread(threading.Thread):
                 return True
 
             new_buildno = int(self.build["number"])
-            current_buildno = int(flow.build["number"])
+            try:
+                # to avoid missing attribute or number info
+                current_buildno = int(flow.build["number"])
+            except:
+                return False
+
             if new_buildno < current_buildno:
                 self.log.debug(outdated_msg)
                 return True
@@ -241,9 +244,6 @@ class EventThread(threading.Thread):
                 self.log.error("Missing Flow <%s> Info." % upstream_flowname)
                 return False
             if upstream_flowno < current_flowno:
-                self.log.info("%s < %s" % (upstream_flowno,
-                                           current_flowno))
-                self.log.info("type: %s" % type(current_flowno))
                 self.log.debug(outdated_msg)
                 return True
             else:
@@ -292,7 +292,7 @@ class EventThread(threading.Thread):
             return
 
         with self.lock:
-            self.log.debug("lock acquire job")
+            self.log.debug("Job <%s> acquires the lock" % self.name)
             # check outdated
             if self.checkEventOutdated():
                 return
@@ -319,9 +319,11 @@ class EventThread(threading.Thread):
         update flow status
         """
         with self.lock:
-            self.log.debug("lock acquire flow")
+            self.log.debug("Flow <%s> acquires the lock" % self.name)
             flow = self.flows.get(self.name, None)
             if flow:
+                if self.checkEventOutdated():
+                    return
                 self._cleanupFlowStatus()
                 flow.build = self.build
                 flow.status = self.status
