@@ -50,6 +50,11 @@ function drawflow(){
 
             if (job.build) {
                 html += "<span class=buildurl><a href='{0}'>#{1}</a></span>".format(job.build.full_url, job.build.number);
+
+                if (job.duration) {
+                    html += "<span class=buildurl>{0}sec</span>".format(job.duration);
+                    }
+
                 }
 
             html += "</div>";

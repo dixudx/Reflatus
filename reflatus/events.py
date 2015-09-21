@@ -158,6 +158,15 @@ class EventThread(threading.Thread):
         return self.jenkinsmgr.getRootCauses(self.name,
                                              self.build["number"])
 
+    def getDuration(self):
+        """
+        get duration
+        return seconds
+        """
+        duration = self.jenkinsmgr.getDuration(self.name,
+                                               self.build["number"])
+        return duration.total_seconds()
+
     @property
     def isflow(self):
         """
@@ -306,6 +315,7 @@ class EventThread(threading.Thread):
                 if self._isMatched(identifiers, parameters):
                     event_job.build = self.build
                     event_job.status = self.status
+                    event_job.duration = self.getDuration()
 
                     self.log.debug(" ".join(["Successfully Update Job",
                                              "<%s> status" % self.name
@@ -329,6 +339,7 @@ class EventThread(threading.Thread):
                 self._cleanupFlowStatus()
                 flow.build = self.build
                 flow.status = self.status
+                flow.duration = self.getDuration()
                 self.log.debug(" ".join(["Successfully Update Flow",
                                          "<%s> status" % self.name
                                          ]))
@@ -399,10 +410,12 @@ class StartedEventThread(EventThread):
             return
         flow.build = None
         flow.status = None
+        flow.duration = 0
         jobs_list = self._getJobsList(jobs)
         for job in jobs_list:
             job.build = None
             job.status = None
+            job.duration = 0
         self.log.debug("Successfully cleanup all the downstream jobs.")
         return
 

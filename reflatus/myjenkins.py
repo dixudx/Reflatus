@@ -60,6 +60,15 @@ class JenkinsManager(object):
     def getBuild(self, job_name, build_number):
         return self.server.get_job(job_name).get_build(build_number)
 
+    def getDuration(self, job_name, build_number):
+        """
+        get duration of current build
+        """
+        self.log.debug("Get Duration for <%s/%s>" % (job_name,
+                                                     build_number))
+        build = self.getBuild(job_name, build_number)
+        return build.get_duration()
+
     def getCauses(self, job_name, build_number):
         """
         get the cause/upstream job name
