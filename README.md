@@ -1,16 +1,18 @@
-# Reflatus
+# reflatus
 
-**Re**al-time Jenkins **Fl**ow St**atus** (Standalone Service)
+**re**al-time jenkins **fl**ow st**atus** (Standalone Service)
 
 This tool is used to track the `real-time status` of the Jenkins Build Flow. Admittedly, there is already a plugin named [Build Graph View Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Build+Graph+View+Plugin), which computes a graph of related builds starting from the current one, and renders it as a graph.
 
 However, that plugin is full-fledged with no standalone daemon, which is hard to customized and integrated into your own dashboard.
+
 
 ## What it can NOT do
 
 This tool only has a ***static parser***, which can **NOT** parse the dedicated DSL defined by [build flow](https://wiki.jenkins-ci.org/display/JENKINS/Build+Flow+Plugin). For the reasons, please refer to FAQ.
 
 Then an extra yaml file is needed to ***explicitly*** define the build workflows (aka build pipelines). More info can be seen in the `Configuration` section.
+
 
 ## How to Use it ?
 
@@ -22,7 +24,14 @@ $ pip install -r requirements.txt
 
 ### Configuration
 
-In folder `conf`, there are two sample configuration files,
+In folder `reflatus/config`, there are two sample configuration files, you need
+to copy them and modify accordingly.
+
+```shell
+$ cd config
+$ cp config.conf.example config.conf
+$ cp flows.yaml.example flows.yaml
+```
 
 * `config.conf`: an overall configuration file in ***ini*** file format
 
@@ -50,6 +59,7 @@ In folder `conf`, there are two sample configuration files,
 
     **Important Notice**: For a job/pipeline that will be triggered several times with some `triggered parameters`, you have to explicitly add an **identifier** to distinguish them, such as `Build_Zenith_VMs`.
 
+
 ### Start the service
 
 To start your service, run the following command:
@@ -57,6 +67,7 @@ To start your service, run the following command:
 ```shell
 $ python service.py
 ```
+
 
 ## FAQ
 

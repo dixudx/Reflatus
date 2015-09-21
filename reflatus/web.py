@@ -9,7 +9,7 @@ class Reflatus(Flask):
     """
     def __init__(self, import_name, beconfig="./config/config.conf",
                  static_path=None, static_url_path=None,
-                 static_folder='static', template_folder='templates',
+                 static_folder='./static', template_folder='./templates',
                  instance_path=None, instance_relative_config=False):
         """
         :param beconfig: back-end config (used for Runner)

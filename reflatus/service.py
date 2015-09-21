@@ -1,7 +1,15 @@
 from reflatus.web import Reflatus
 from flask import request, jsonify, render_template
+import os
 
-app = Reflatus("Reflatus")
+# change to real directory
+# used for relative path configuration in config.conf
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
+
+app = Reflatus("Reflatus",
+               beconfig="./config/config.conf",
+               static_folder="./static",
+               template_folder="./templates")
 
 
 @app.route("/")
