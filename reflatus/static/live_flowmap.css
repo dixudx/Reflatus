@@ -1,0 +1,129 @@
+body {
+  position: fixed;
+  top: 0;
+  bottom: 100px;
+  left: 50px;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
+  background: #ffffff;
+}
+
+
+@-webkit-keyframes flash {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes flash {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: 0.2;
+  }
+}
+
+.warn {
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.live.map {
+  width: 100%;
+  height: 100%;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.live.map text {
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.live.map .node rect {
+  stroke-width: 1.5px;
+  stroke: #bbb;
+  fill: #666;
+}
+
+.live.map .status {
+  height: 100%;
+  width: 20px;
+  display: block;
+  float: left;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-right: 4px;
+}
+
+.live.map .running .status {
+  background-color: #90ee90;
+}
+
+.live.map .running.warn .status {
+  background-color: #90ee90;
+}
+
+.live.map .stopped .status {
+  background-color: #7f7f7f;
+}
+
+.live.map .success .status {
+  background-color: #0000ff;
+}
+
+.live.map .failure .status,
+.live.map .aborted .status {
+  background-color: #ff0000;
+}
+
+.warn {
+  -webkit-animation-name: flash;
+  animation-name: flash;
+}
+
+.live.map .name {
+  margin-top: 4px;
+}
+
+.live.map .buildurl {
+  display: block;
+  float: left;
+  width: 130px;
+  height: 20px;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.live.map .node g div {
+  width: 400px;
+  height: 40px;
+  color: #000000;
+}
+
+.live.map .edgeLabel text {
+  width: 50px;
+  fill: #000000;
+}
+
+.live.map .edgePath path {
+  stroke: #0000ff;
+  stroke-width: 1.5px;
+  fill: #0000ff;
+}

@@ -8,6 +8,7 @@ from reflatus.utils import StoppedException
 import logging
 import json
 from abc import ABCMeta, abstractmethod
+import re
 
 
 STATUS_MAP = {"SUCCESS": "success",
@@ -94,7 +95,8 @@ class EventsHandler(threading.Thread):
         self.queue.put(event)
 
     def handle_event(self, event):
-        topic, data = event.split(None)
+        pattern = re.compile(r"(on\w+) (\{.*\})", re.DOTALL)
+        topic, data = pattern.match(event).groups()
 
         if topic == 'onStarted':
             self._handle_started_event(data)

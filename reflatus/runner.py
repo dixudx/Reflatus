@@ -2,14 +2,15 @@ from reflatus.loader import Loader
 from reflatus.myjenkins import JenkinsManager
 from reflatus.events import ZMQListener
 import ConfigParser
-from time import sleep
 import threading
+import logging
 
 
 class Runner(threading.Thread):
     """
     backend runner class
     """
+    log = logging.getLogger('runner.Runner')
     def __init__(self, config):
         """
         @param config: the config file
@@ -22,6 +23,7 @@ class Runner(threading.Thread):
         self._stopped = False
 
     def _readConfig(self, filename):
+        self.log.info("Read configuration file: %s" % filename)
         config = ConfigParser.ConfigParser()
         config.read(filename)
         return config
@@ -29,8 +31,11 @@ class Runner(threading.Thread):
     def _getFlows(self):
         try:
             flow_config = self.config.get("flows", "config")
+            self.log.info("Get flows' configuration file: %s" % flow_config)
         except:
-            flow_config = "./conf/flows.yaml"
+            flow_config = "./config/flows.yaml"
+            self.log.info(" ".join(["Exception Occurred.",
+                                    "Use default ./config/flows.yaml"]))
         return Loader(flow_config).getConfig()
 
     def _getJenkinsMgr(self):
@@ -49,8 +54,6 @@ class Runner(threading.Thread):
 
     def run(self):
         self.zmq.start()
-        while True:
-            sleep(5)
 
 
 if __name__ == "__main__":
@@ -58,4 +61,4 @@ if __name__ == "__main__":
     setup_logging()
     test_config = "./conf/config.conf"
     rc = Runner(test_config)
-    rc.run()
+    rc.start()

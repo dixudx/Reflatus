@@ -31,6 +31,8 @@ class JenkinsManager(object):
         self.server = Jenkins(baseurl=self.baseurl,
                               username=self.username,
                               password=self.password)
+        self.log.info("Access Jenkins %s with username: %s" % (self.baseurl,
+                                                               self.username))
 
     def is_job(self, job_name):
         """

@@ -1,12 +1,13 @@
 <VirtualHost *:8001>
+
     WSGIScriptAlias / /var/www/reflatus/reflatus.wsgi
-    <Directory /var/www/reflatus/>
+    <Directory /var/www/reflatus/reflatus/>
         Order allow,deny
         Allow from all
     </Directory>
 
-    Alias /static /var/www/reflatus/static
-    <Directory /var/www/reflatus/static/>
+    Alias /static /var/www/reflatus/reflatus/static
+    <Directory /var/www/reflatus/reflatus/static/>
         Order allow,deny
         Allow from all
     </Directory>

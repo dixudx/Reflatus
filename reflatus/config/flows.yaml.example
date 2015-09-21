@@ -1,0 +1,29 @@
+flows:
+  - name: flow_demo
+    jobs:
+      - serial:
+        - name: job_one
+          description: description for job_one
+          identifier: {str1: 'demo'}
+        - name: job_two
+          description: description for job_two
+        - name: flow_one
+          label: true
+        - name: job_four
+
+  - name: flow_one
+    label: true
+    jobs:
+      - parallel:
+        - name: job_one
+          identifier: {str1: 'demo2'}
+        - name: job_three
+
+  - name: flow_demo2
+    jobs:
+      - serial:
+        - name: job_one
+        - name: job_two
+      - parallel:
+        - name: job_three
+        - name: job_four
