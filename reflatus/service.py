@@ -42,7 +42,7 @@ def livesingleflow(flowname):
                             "back-end configuration file.",
                             "Please check the validity of your flow name."])
         return ret_msg
-    except Exception, excp:
+    except Exception as excp:
         ret_msg = " ".join(["Unable to handle Flow <%s> with" % flowname,
                             "the following message: %s." % excp,
                             "Please contact the back-end administrator."])

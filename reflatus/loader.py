@@ -165,7 +165,7 @@ class Loader(object):
 
                 reshaped_jobs.append(job_list)
             return reshaped_jobs
-        except Exception, excp:
+        except Exception as excp:
             self.log.error("Unable to reshape flow %s" % flow_name)
             self.log.error(excp)
             return None
