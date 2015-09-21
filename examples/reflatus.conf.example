@@ -1,0 +1,18 @@
+<VirtualHost *:8001>
+    WSGIScriptAlias / /var/www/reflatus/reflatus.wsgi
+    <Directory /var/www/reflatus/>
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    Alias /static /var/www/reflatus/static
+    <Directory /var/www/reflatus/static/>
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    LogLevel debug
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
