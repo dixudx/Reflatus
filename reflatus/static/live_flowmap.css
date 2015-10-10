@@ -88,6 +88,10 @@ svg {
   background-color: #0000ff;
 }
 
+.live.map .unstable .status {
+  background-color: #f2d710;
+}
+
 .live.map .failure .status,
 .live.map .aborted .status {
   background-color: #ff0000;

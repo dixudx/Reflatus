@@ -13,7 +13,8 @@ import re
 
 STATUS_MAP = {"SUCCESS": "success",
               "FAILURE": "failure",
-              "ABORTED": "aborted"
+              "ABORTED": "aborted",
+              "UNSTABLE": "unstable"
               }
 
 
