@@ -68,6 +68,7 @@ To start your service, run the following command:
 $ python service.py
 ```
 
+![](/demo/reflatus_demo.png)
 
 ## FAQ
 
