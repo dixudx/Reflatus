@@ -6,8 +6,7 @@ body {
   right: 0;
   margin: 0;
   padding: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
-  background: #ffffff;
+  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 
@@ -73,28 +72,28 @@ svg {
 }
 
 .live.map .running .status {
-  background-color: #90ee90;
+  background-color: #00a65a;
 }
 
 .live.map .running.warn .status {
-  background-color: #90ee90;
+  background-color: #00a65a;
 }
 
 .live.map .stopped .status {
-  background-color: #7f7f7f;
+  background-color: #d2d6de;
 }
 
 .live.map .success .status {
-  background-color: #0000ff;
+  background-color: #00c0ef;
 }
 
 .live.map .unstable .status {
-  background-color: #f2d710;
+  background-color: #f39c12;
 }
 
 .live.map .failure .status,
 .live.map .aborted .status {
-  background-color: #ff0000;
+  background-color: #dd4b39;
 }
 
 .warn {
