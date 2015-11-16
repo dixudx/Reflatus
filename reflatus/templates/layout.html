@@ -92,10 +92,14 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-
             {% for server_name in servers_info %}
             <li>
-              <a href="#"><i class="fa fa-circle-o"></i>{{ server_name }}</a>
+              <a href="#"><i class="fa fa-circle-o"></i>{{ server_name }} <i class="fa fa-angle-left pull-right"></i></a>
+              {% for flow_name in servers_info[server_name].flow_maps %}
+              <ul class="treeview-menu">
+                <li><a href="#"><i class="fa fa-circle-o"></i>{{ flow_name }}</a></li>
+              </ul>
+              {% endfor %}
             </li>
             {% endfor %}
           </ul>
