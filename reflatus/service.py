@@ -27,52 +27,56 @@ def index():
                            flows_list=flows_list)
 
 
-@app.route("/liveflows/<flowname>")
-def livesingleflow(flowname):
+@app.route("/<server_name>/<flow_name>")
+def liveflow(server_name, flow_name):
     """
     show a status graph of a certain flowname
     """
     url_root = request.url_root
-    title = flowname
 
     try:
-        flow = convert_flow(app.flow_map[flowname])
+        flow = convert_flow(app.servers_info[server_name].flow_maps[flow_name])
     except KeyError:
-        ret_msg = " ".join(["Unable to find Flow <%s> in the" % flowname,
+        ret_msg = " ".join(["Unable to find Flow <%s> in the" % flow_name,
                             "back-end configuration file.",
                             "Please check the validity of your flow name."])
         return ret_msg
     except Exception as excp:
-        ret_msg = " ".join(["Unable to handle Flow <%s> with" % flowname,
+        ret_msg = " ".join(["Unable to handle Flow <%s> with" % flow_name,
                             "the following message: %s." % excp,
                             "Please contact the back-end administrator."])
         return ret_msg
 
-    return render_template('live_flowmap.html',
-                           title=title,
+    return render_template('liveflow.html',
+                           servers_info=app.servers_info,
+                           flow_name=flow_name,
+                           server_name=server_name,
                            flow=flow,
                            url_root=url_root)
 
 
-@app.route("/flowdata/<flowname>")
-def flowsupdated(flowname):
+@app.route("/flowdata/<server_name>/<flow_name>")
+def flowupdated(server_name, flow_name):
     """
     updated json data of a certain flowname
     used by ajax in js
     """
-    flow = convert_flow(app.flow_map[flowname])
+
+    flow = convert_flow(app.servers_info[server_name].flow_maps[flow_name])
     return jsonify(flow)
 
 
 def convert_flow(flow):
-    """
-    Convert the obj info to dict
+    """Convert the obj info to dict
+
     @param flow: a dict contains all jobs info
     """
+
     newflow = dict()
     for (job_name, job_info) in flow.iteritems():
         newflow[job_name] = job_info.__dict__
     return newflow
+
 
 if __name__ == "__main__":
     from reflatus.utils import setup_logging

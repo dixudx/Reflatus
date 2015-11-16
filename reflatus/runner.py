@@ -140,6 +140,6 @@ class Runner(threading.Thread):
 if __name__ == "__main__":
     from reflatus.utils import setup_logging
     setup_logging()
-    test_config = "./new_config.conf"
+    test_config = "./config/config.conf"
     rc = Runner(test_config)
     rc.start()

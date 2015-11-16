@@ -15,8 +15,8 @@ Reflatus | {{ flow_name }}
   var server_name = {{ server_name|tojson }};
 </script>
 
-<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='live_flowmap.css')}}">
-<script src="{{url_for('static',filename='live_flowmap.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='liveflow.css')}}">
+<script src="{{url_for('static',filename='liveflow.js')}}"></script>
 {% endblock %}
 
 
@@ -39,9 +39,9 @@ Reflatus | {{ flow_name }}
 {% endblock %}
 
 {% block box_body %}
-<div class="box-body">
-  <div class="live map">
-    <svg><g/></svg>
-  </div>
+<div class="box-body live map">
+  <svg width="500px" height="300px">
+    <g/>
+  </svg>
 </div>
 {% endblock %}

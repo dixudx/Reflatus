@@ -1,15 +1,3 @@
-body {
-  position: fixed;
-  top: 0;
-  bottom: 100px;
-  left: 50px;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
-}
-
-
 @-webkit-keyframes flash {
   0%, 50%, 100% {
     opacity: 1;
@@ -45,6 +33,7 @@ body {
 }
 
 svg {
+  /*display:block;*/
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -56,9 +45,7 @@ svg {
 }
 
 .live.map .node rect {
-  stroke-width: 1.5px;
-  stroke: #bbb;
-  fill: #666;
+  fill: #d2d6de;
 }
 
 .live.map .status {
@@ -80,7 +67,7 @@ svg {
 }
 
 .live.map .stopped .status {
-  background-color: #d2d6de;
+  background-color: #d4d1cb;
 }
 
 .live.map .success .status {
@@ -122,11 +109,11 @@ svg {
 
 .live.map .edgeLabel text {
   width: 50px;
-  fill: #000000;
+  fill: #060dcc;
 }
 
 .live.map .edgePath path {
-  stroke: #0000ff;
+  stroke: #00a65a;
   stroke-width: 1.5px;
-  fill: #0000ff;
+  fill: #00a65a;
 }

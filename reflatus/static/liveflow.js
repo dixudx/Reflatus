@@ -3,11 +3,13 @@ function drawflow(){
     // Set up zoom support
     var svg = d3.select("svg"),
         inner = svg.select("g"),
-        zoom = d3.behavior.zoom().on("zoom", function() {
-            inner.attr("transform", "translate(" + d3.event.translate + ")" +
-                    "scale(" + d3.event.scale + ")");
-            });
+        zoom = d3.behavior.zoom().on("zoom", null);
+        //zoom = d3.behavior.zoom().on("zoom", function() {
+        //    inner.attr("transform", "translate(" + d3.event.translate + ")" +
+        //            "scale(" + d3.event.scale + ")");
+        //    });
     svg.call(zoom);
+    //svg.call();
 
     var render = new dagreD3.render();
 
@@ -87,23 +89,24 @@ function drawflow(){
         var height = parseInt(svg.style("height").replace(/px/, ""));
         zoomScale = Math.min(width / graphWidth, height / graphHeight);
         var translate = [(width/2) - ((graphWidth*zoomScale)/2), (height/2) - ((graphHeight*zoomScale)/2)];
-        zoom.translate(translate);
-        zoom.scale(zoomScale);
-        zoom.event(d3.select("svg"));
+        //zoom.translate(translate);
+        //zoom.scale(zoomScale);
+        zoom.event(d3.select("svg").on("dblclick.zoom", null));
+        //d3.select("svg");
         }
 
     // Do some status updates
-    setInterval(function() {
-        //Get some updated values from the server
-        $.getJSON(url_root + 'flowdata/{0}/{1}'.format(server_name, flow_name),  // At this URL
-                  {},                         // With no extra parameters
-                  function(data) {
-                      // Update the graph
-                      if (jobs!=data) {
-                          jobs = data;
-                          draw();
-                      }
-                  });
-        }, 5000);
+    //setInterval(function() {
+    //    //Get some updated values from the server
+    //    $.getJSON(url_root + 'flowdata/{0}/{1}'.format(server_name, flow_name),  // At this URL
+    //              {},                         // With no extra parameters
+    //              function(data) {
+    //                  // Update the graph
+    //                  if (jobs!=data) {
+    //                      jobs = data;
+    //                      draw();
+    //                  }
+    //              });
+    //    }, 5000);
     draw();
     }
