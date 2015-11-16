@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Reflatus | {{ flow_name }}
+{% endblock %}
+
+{% block head %}
+<script src="{{url_for('static',filename='d3.v3.min.js')}}" charset="utf-8"></script>
+<script src="{{url_for('static',filename='dagre-d3/v0.4.8/dagre-d3.min.js')}}"></script>
+
+<script>
+  var jobs = {{ flow|tojson }};
+  var flow_name = {{ flow_name|tojson }};
+  var url_root = {{ url_root|tojson }};
+  var server_name = {{ server_name|tojson }};
+</script>
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='live_flowmap.css')}}">
+<script src="{{url_for('static',filename='live_flowmap.js')}}"></script>
+{% endblock %}
+
+
+{% block content_header %}
+<h1>
+{{ flow_name }}
+<small>{{ server_name }}</small>
+</h1>
+{% endblock %}
+
+{% block content_nav %}
+<ol class="breadcrumb">
+<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+<li class="active">Blank page</li>
+</ol>
+{% endblock %}
+
+{% block body %}
+<script type="text/javascript">$(drawflow)</script>
+{% endblock %}
+
+{% block box_body %}
+<div class="box-body">
+  <div class="live map">
+    <svg><g/></svg>
+  </div>
+</div>
+{% endblock %}

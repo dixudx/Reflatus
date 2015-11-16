@@ -95,7 +95,7 @@ function drawflow(){
     // Do some status updates
     setInterval(function() {
         //Get some updated values from the server
-        $.getJSON(url_root + 'flowdata/{0}'.format(flow_name),  // At this URL
+        $.getJSON(url_root + 'flowdata/{0}/{1}'.format(server_name, flow_name),  // At this URL
                   {},                         // With no extra parameters
                   function(data) {
                       // Update the graph
