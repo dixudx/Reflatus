@@ -5,8 +5,8 @@ function drawflow(){
         inner = svg.select("g"),
         //zoom = d3.behavior.zoom().on("zoom", null);
         zoom = d3.behavior.zoom().on("zoom", function() {
-            inner.attr("transform", "translate(" + d3.event.translate + ")" +
-                    "scale(" + d3.event.scale + ")");
+            inner.attr("transform", "translate(" + d3.event.translate[0] + ")" +
+                    "scale(" + d3.event.scale + " 1)");
             });
     svg.call(zoom);
 
@@ -82,14 +82,22 @@ function drawflow(){
 
         // Zoom and scale to fit
         var zoomScale = zoom.scale();
-        var graphWidth = g.graph().width + 80;
-        var graphHeight = g.graph().height + 40;
+        var graphWidth = g.graph().width;
+        var graphHeight = g.graph().height;
         var width = parseInt(svg.style("width").replace(/px/, ""));
         var height = parseInt(svg.style("height").replace(/px/, ""));
-        zoomScale = Math.min(width / graphWidth, height / graphHeight);
+
+        //zoomScale = Math.min(width / graphWidth, height / graphHeight);
+        zoomScale = width / graphWidth;
         var translate = [(width/2) - ((graphWidth*zoomScale)/2), (height/2) - ((graphHeight*zoomScale)/2)];
         zoom.translate(translate);
         zoom.scale(zoomScale);
+
+        // set dynamic height according to the graph
+        var svgElement = document.getElementById("svgMain");
+        svgElement.setAttribute("height", graphHeight);
+
+        // disable wheel zoom
         //zoom.event(d3.select("svg").on("dblclick.zoom", null));
         zoom.event(d3.select("svg").on("mousewheel.zoom", null));
         zoom.event(d3.select("svg").on("wheel.zoom", null));

@@ -38,10 +38,16 @@ Reflatus | {{ flow_name }}
 <script type="text/javascript">$(drawflow)</script>
 {% endblock %}
 
+{% block box_title %}
+{% endblock %}
+
 {% block box_body %}
 <div class="box-body live map">
-  <svg width="500px" height="300px">
-    <g/>
+  <svg id="svgMain" height="800px">
+    <g align="center" style="text-align:center;font-size: 1.3em;"/>
   </svg>
 </div>
+{% endblock %}
+
+{% block box_footer %}
 {% endblock %}
